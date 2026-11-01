@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Edit halaman')
+@section('title', 'Pengaturan Halaman')
 @section('content')
 @if ($errors->any())
     <div class="alert">{{ $errors->first() }}</div>
@@ -7,7 +7,7 @@
 <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data" class="card">
     @csrf
     @method('PUT')
-    <h2>Hero & kontak</h2>
+    <h2>Bagian Utama &amp; Kontak</h2>
     
     <!-- Bagian Logo dengan Popup -->
     <div class="section-box">
@@ -34,28 +34,28 @@
     </div>
 
     <div class="grid-2">
-        <label class="f"><span>Nama kecil di atas judul</span><input type="text" name="judul" value="{{ old('judul', $setting->judul) }}"></label>
-        <label class="f"><span>Judul besar</span><input type="text" name="headline" value="{{ old('headline', $setting->headline) }}"></label>
+        <label class="f"><span>Nama kecil di atas judul (Eyebrow)</span><input type="text" name="judul" value="{{ old('judul', $setting->judul) }}"></label>
+        <label class="f"><span>Judul Utama (Headline)</span><input type="text" name="headline" value="{{ old('headline', $setting->headline) }}"></label>
     </div>
-    <label class="f"><span>Subjudul</span><textarea name="subjudul" rows="3">{{ old('subjudul', $setting->subjudul) }}</textarea></label>
+    <label class="f"><span>Subjudul / Keterangan Hero</span><textarea name="subjudul" rows="3">{{ old('subjudul', $setting->subjudul) }}</textarea></label>
     <div class="grid-2">
         <label class="f"><span>Nomor WhatsApp</span><input type="text" name="wa" value="{{ old('wa', $setting->wa_tampil ?: $setting->wa) }}" placeholder="Contoh: 085174108440"></label>
-        <label class="f"><span>Instagram (tanpa @)</span><input type="text" name="ig" value="{{ old('ig', $setting->ig) }}" placeholder="sasa.fabric"></label>
+        <label class="f"><span>Username Instagram (tanpa @)</span><input type="text" name="ig" value="{{ old('ig', $setting->ig) }}" placeholder="sasa.fabric"></label>
     </div>
-    <label class="f"><span>Pesan Default WhatsApp</span><input type="text" name="pesan" value="{{ old('pesan', $setting->pesan) }}" placeholder="Halo Sasa, saya mau tanya soal katalog kain Sasa Fabric."></label>
+    <label class="f"><span>Pesan Awal WhatsApp</span><input type="text" name="pesan" value="{{ old('pesan', $setting->pesan) }}" placeholder="Halo Sasa, saya mau tanya soal katalog kain Sasa Fabric."></label>
 
-    <h2>Judul section</h2>
+    <h2>Judul Bagian Halaman</h2>
     <div class="grid-2">
-        <label class="f"><span>Judul galeri foto</span><input type="text" name="judul_galeri" value="{{ old('judul_galeri', $setting->judul_galeri) }}"></label>
-        <label class="f"><span>Judul material</span><input type="text" name="judul_koleksi" value="{{ old('judul_koleksi', $setting->judul_koleksi) }}"></label>
-        <label class="f"><span>Judul cara pesan</span><input type="text" name="judul_cara" value="{{ old('judul_cara', $setting->judul_cara) }}"></label>
-        <label class="f"><span>Judul syarat &amp; ketentuan</span><input type="text" name="judul_sk" value="{{ old('judul_sk', $setting->judul_sk) }}"></label>
+        <label class="f"><span>Judul Bagian Bestseller (Beranda)</span><input type="text" name="judul_bestseller" value="{{ old('judul_bestseller', $homeSetting->judul_bestseller ?? 'Bestseller') }}"></label>
+        <label class="f"><span>Judul Halaman Katalog Kain</span><input type="text" name="judul_katalog" value="{{ old('judul_katalog', $setting->judul_katalog) }}"></label>
+        <label class="f"><span>Judul Cara Pesan</span><input type="text" name="judul_cara" value="{{ old('judul_cara', $setting->judul_cara) }}"></label>
+        <label class="f"><span>Judul Syarat &amp; Ketentuan</span><input type="text" name="judul_sk" value="{{ old('judul_sk', $setting->judul_sk) }}"></label>
     </div>
-    <label class="f"><span>Daftar material (satu baris satu)</span><textarea name="koleksi" rows="6">{{ old('koleksi', $koleksi) }}</textarea></label>
-    <label class="f"><span>Langkah cara pesan (satu baris satu)</span><textarea name="cara" rows="5">{{ old('cara', $cara) }}</textarea></label>
-    <label class="f"><span>Syarat &amp; ketentuan (satu baris satu poin)</span><textarea name="sk" rows="10">{{ old('sk', $sk) }}</textarea></label>
-    <label class="f"><span>Footer</span><textarea name="footer" rows="2">{{ old('footer', $setting->footer) }}</textarea></label>
-    <button class="btn pri" type="submit">Simpan &amp; terbitkan</button>
+    <label class="f"><span>Daftar Material (Satu baris satu jenis kain)</span><textarea name="koleksi" rows="6">{{ old('koleksi', $koleksi) }}</textarea></label>
+    <label class="f"><span>Langkah Cara Pesan (Satu baris satu langkah)</span><textarea name="cara" rows="5">{{ old('cara', $cara) }}</textarea></label>
+    <label class="f"><span>Syarat &amp; Ketentuan (Satu baris satu poin)</span><textarea name="sk" rows="10">{{ old('sk', $sk) }}</textarea></label>
+    <label class="f"><span>Teks Footer</span><textarea name="footer" rows="2">{{ old('footer', $setting->footer) }}</textarea></label>
+    <button class="btn pri" type="submit">Simpan Pengaturan</button>
 </form>
 
 <!-- Modal Popup Ganti Logo -->

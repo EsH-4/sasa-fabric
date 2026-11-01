@@ -16,9 +16,9 @@
         </div>
         <nav id="sideNav">
             <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">Ringkasan</a>
-            <a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">Edit halaman</a>
-            <a href="{{ route('admin.gallery.index') }}" class="{{ request()->routeIs('admin.gallery.*') ? 'active' : '' }}">Galeri foto</a>
-            <button type="button" class="link" id="triggerViewSiteBtn">Lihat situs</button>
+            <a href="{{ route('admin.catalog.index') }}" class="{{ request()->routeIs('admin.catalog.*') ? 'active' : '' }}">Katalog Kain</a>
+            <a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">Pengaturan Halaman</a>
+            <button type="button" class="link" id="triggerViewSiteBtn">Lihat Situs</button>
             <button type="button" class="link link-danger" id="triggerLogoutBtn">Keluar</button>
         </nav>
     </aside>
@@ -43,7 +43,8 @@
         </p>
         <div class="modal-actions">
             <button type="button" class="btn" id="cancelViewSiteBtn">Batal</button>
-            <a href="{{ route('home') }}" target="_blank" class="btn pri modal-btn-confirm" id="confirmViewSiteBtn">Buka Situs</a>
+            <a href="{{ route('home') }}" target="_blank" class="btn modal-btn-confirm" id="confirmViewSiteBtn">Beranda</a>
+            <a href="{{ route('catalog.index') }}" target="_blank" class="btn pri modal-btn-confirm">Buka Katalog</a>
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomeSetting;
 use App\Models\InfoChip;
 use App\Models\Material;
 use App\Models\OrderStep;
@@ -22,6 +23,7 @@ class SettingController extends Controller
 
         return view('admin.settings.edit', [
             'setting' => $setting,
+            'homeSetting' => HomeSetting::current(),
             'info' => InfoChip::query()->orderBy('sort_order')->pluck('text')->implode("\n"),
             'koleksi' => Material::query()->orderBy('sort_order')->pluck('name')->implode("\n"),
             'cara' => OrderStep::query()->orderBy('sort_order')->pluck('text')->implode("\n"),
@@ -42,6 +44,8 @@ class SettingController extends Controller
             'pesan' => ['nullable', 'string'],
             'tombol1' => ['nullable', 'string', 'max:255'],
             'tombol2' => ['nullable', 'string', 'max:255'],
+            'judul_bestseller' => ['nullable', 'string', 'max:255'],
+            'judul_katalog' => ['nullable', 'string', 'max:255'],
             'judul_galeri' => ['nullable', 'string', 'max:255'],
             'judul_koleksi' => ['nullable', 'string', 'max:255'],
             'judul_cara' => ['nullable', 'string', 'max:255'],
@@ -63,7 +67,13 @@ class SettingController extends Controller
             $data['logo_path'] = $request->file('logo')->store('logo', 'public');
         }
 
-        unset($data['info'], $data['koleksi'], $data['cara'], $data['sk'], $data['logo']);
+        if ($request->has('judul_bestseller')) {
+            HomeSetting::current()->update([
+                'judul_bestseller' => $request->input('judul_bestseller') ?: 'Bestseller',
+            ]);
+        }
+
+        unset($data['info'], $data['koleksi'], $data['cara'], $data['sk'], $data['logo'], $data['judul_bestseller']);
 
         if ($request->filled('wa')) {
             $rawWa = (string) $request->input('wa');

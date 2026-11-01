@@ -19,6 +19,7 @@ class SiteSetting extends Model
         'tombol1',
         'tombol2',
         'judul_galeri',
+        'judul_katalog',
         'judul_koleksi',
         'judul_cara',
         'judul_sk',
@@ -33,11 +34,22 @@ class SiteSetting extends Model
 
     public function logoUrl(): ?string
     {
-        if (! $this->logo_path) {
-            return null;
+        if ($this->logo_path) {
+            $storagePath = public_path('storage/'.ltrim((string) $this->logo_path, '/'));
+            if (file_exists($storagePath)) {
+                return asset('storage/'.ltrim((string) $this->logo_path, '/'));
+            }
         }
 
-        return Storage::disk('public')->url($this->logo_path);
+        if (file_exists(public_path('images/logo.png'))) {
+            return asset('images/logo.png');
+        }
+
+        if ($this->logo_path) {
+            return asset('storage/'.ltrim((string) $this->logo_path, '/'));
+        }
+
+        return null;
     }
 
     public function katalogUrl(): string

@@ -12,19 +12,19 @@
     <div class="login-card">
         <div class="brand"><img src="{{ asset('images/logo.png') }}" alt="Sasa Fabric"></div>
         <h1>Admin Sasa Fabric</h1>
-        <p class="muted">Masuk untuk mengedit halaman dan galeri.</p>
+        <p class="muted">Masuk untuk mengelola katalog kain dan konten website.</p>
         @if ($errors->any())
             <p class="error">{{ $errors->first() }}</p>
         @endif
         <form method="POST" action="{{ route('admin.login.store') }}">
             @csrf
             <label class="f"><span>Email</span><input type="email" name="email" value="{{ old('email') }}" required autofocus></label>
-            <label class="f"><span>Kata sandi</span><input type="password" name="password" required></label>
+            <label class="f"><span>Kata Sandi</span><input type="password" name="password" required></label>
             <label class="f checkbox-f">
                 <input type="checkbox" name="remember" value="1">
-                <span>Ingat saya</span>
+                <span>Ingat Saya</span>
             </label>
-            <button class="btn pri" type="submit">Masuk</button>
+            <button class="btn pri" type="submit">Masuk ke Panel</button>
         </form>
     </div>
 </div>

@@ -28,6 +28,6 @@ class GalleryPhoto extends Model
 
     public function url(): string
     {
-        return Storage::disk('public')->url($this->path);
+        return asset('storage/'.ltrim((string) $this->path, '/'));
     }
 }
